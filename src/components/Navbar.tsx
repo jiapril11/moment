@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react";
 import {
   HomeIcon,
   HomeFilledIcon,
@@ -13,6 +14,7 @@ import ColorButton from "./ui/ColorButton";
 
 export default function Navbar() {
   const path = usePathname();
+  const { data: session } = useSession();
 
   const menu = [
     { href: "/", icon: <HomeIcon />, clickedIcon: <HomeFilledIcon /> },
@@ -36,7 +38,13 @@ export default function Navbar() {
               <Link href={href}>{href === path ? clickedIcon : icon}</Link>
             </li>
           ))}
-          <ColorButton text="SignIn" onClick={() => {}} />
+          <li>
+            {session ? (
+              <ColorButton text="SignOut" onClick={() => signOut()} />
+            ) : (
+              <ColorButton text="SignIn" onClick={() => signIn()} />
+            )}
+          </li>
         </ul>
       </nav>
     </div>
