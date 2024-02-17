@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "../components/Navbar";
+import AuthContext from "@/context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} w-full overflow-auto`}>
+        <AuthContext>
+          <header className="sticky top-0 bg-white z-10 shadow-sm">
+            <Navbar />
+          </header>
+          <main>{children}</main>
+        </AuthContext>
+      </body>
     </html>
   );
 }
