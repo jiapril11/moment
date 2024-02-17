@@ -11,10 +11,12 @@ import {
   NewFilledIcon,
 } from "./ui/icons";
 import ColorButton from "./ui/ColorButton";
+import Avatar from "./Avatar";
 
 export default function Navbar() {
   const path = usePathname();
   const { data: session } = useSession();
+  const user = session?.user;
 
   const menu = [
     { href: "/", icon: <HomeIcon />, clickedIcon: <HomeFilledIcon /> },
@@ -38,6 +40,14 @@ export default function Navbar() {
               <Link href={href}>{href === path ? clickedIcon : icon}</Link>
             </li>
           ))}
+          {user && (
+            <li>
+              <Link href={`/user/${user?.username}`}>
+                <Avatar image={user.image} />
+              </Link>
+            </li>
+          )}
+
           <li>
             {session ? (
               <ColorButton text="SignOut" onClick={() => signOut()} />
