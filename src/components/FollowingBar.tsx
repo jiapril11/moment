@@ -10,7 +10,7 @@ import ScrollableBar from "./ui/ScrollableBar";
 export default function FollowingBar() {
   const { data, isLoading: loading, error } = useSWR<DetailUser>("/api/me");
   // const users = data?.followings;
-  // const users = undefined;
+  // const users: undefined = undefined;
   const users = data?.followings && [
     ...data?.followings,
     ...data?.followings,
@@ -22,7 +22,7 @@ export default function FollowingBar() {
       {loading ? (
         <BeatLoader color="#36d7b7" />
       ) : (
-        !users || (users?.length === 0 && <p>You can follow others :)</p>)
+        (!users || users?.length === 0) && <p>You can follow others :)</p>
       )}
       {users && users.length > 0 && (
         <ScrollableBar>
