@@ -1,11 +1,12 @@
+type AvatarSize = "sm" | "md" | "lg";
 type Props = {
   image?: string | null;
-  size?: "sm" | "normal";
+  size?: AvatarSize;
   highlight?: boolean;
 };
 export default function Avatar({
   image,
-  size = "normal",
+  size = "lg",
   highlight = false,
 }: Props) {
   return (
@@ -23,17 +24,34 @@ export default function Avatar({
   );
 }
 
-function getContainerStyle(size: string, highlight: boolean): string {
+function getContainerStyle(size: AvatarSize, highlight: boolean): string {
   const baseStyle =
     "rounded-full overflow-hidden flex justify-center items-center";
   const highlightStyle = highlight
     ? `bg-gradient-to-br from-green-400 to-blue-500 p-0.5`
     : "";
-  const sizeStyle = size === "sm" ? "w-9 h-9" : "w-14 h-14 p-[2px]";
+  const sizeStyle = getContainerSize(size);
 
   return `${baseStyle} ${highlightStyle} ${sizeStyle}`;
 }
 
-function getImageStyle(size: string): string {
-  return size === "sm" ? "w-8 h-8 border-1" : "w-[52px] h-[52px] border-2";
+function getContainerSize(size: AvatarSize): string {
+  switch (size) {
+    case "sm":
+      return "w-9 h-9";
+    case "md":
+      return "w-13 h-13 p-[2px]";
+    case "lg":
+      return "w-14 h-14 p-[2px]";
+  }
+}
+function getImageStyle(size: AvatarSize): string {
+  switch (size) {
+    case "sm":
+      return "w-8 h-8 border-1";
+    case "md":
+      return "w-11 h-11 border-2";
+    case "lg":
+      return "w-[52px] h-[52px] border-2";
+  }
 }
