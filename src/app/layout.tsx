@@ -19,15 +19,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} w-full overflow-auto`}>
+      <body className={`${inter.className} w-full overflow-auto bg-neutral-50`}>
         <AuthContext>
           <header className="sticky top-0 bg-white z-10 shadow-sm">
             <Navbar />
           </header>
-          <main className="w-full flex justify-center bg-neutral-50 min-h-full">
+          <main className="w-full flex justify-center">
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
         </AuthContext>
+        <div id="portal" />
       </body>
     </html>
   );
