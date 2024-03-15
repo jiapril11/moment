@@ -3,12 +3,12 @@
 import useSWR from "swr";
 import { BeatLoader } from "react-spinners";
 import Link from "next/link";
-import { DetailUser } from "@/model/user";
+import { HomeUser } from "@/model/user";
 import Avatar from "./Avatar";
 import ScrollableBar from "./ui/ScrollableBar";
 
 export default function FollowingBar() {
-  const { data, isLoading: loading, error } = useSWR<DetailUser>("/api/me");
+  const { data, isLoading: loading, error } = useSWR<HomeUser>("/api/me");
   // const users = data?.followings;
   // const users: undefined = undefined;
   const users = data?.followings && [
@@ -29,7 +29,7 @@ export default function FollowingBar() {
           {users.map(({ username, image }) => (
             <Link
               key={username}
-              href={`/usre/${username}`}
+              href={`/user/${username}`}
               className="flex flex-col items-center w-18"
             >
               <Avatar image={image} highlight />
