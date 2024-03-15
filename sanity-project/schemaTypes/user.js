@@ -24,8 +24,8 @@ export default {
       type: 'string',
     },
     {
-      title: 'Following',
-      name: 'following',
+      title: 'Followings',
+      name: 'followings',
       type: 'array',
       of: [
         {

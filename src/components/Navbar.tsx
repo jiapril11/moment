@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -43,7 +44,7 @@ export default function Navbar() {
           {user && (
             <li>
               <Link href={`/user/${user?.username}`}>
-                <Avatar image={user.image} />
+                <Avatar image={user.image} size="sm" highlight />
               </Link>
             </li>
           )}

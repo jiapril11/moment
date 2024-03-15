@@ -1,8 +1,15 @@
 import { getProviders } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../[...nextauth]/route";
+// import { authOptions } from "../[...nextauth]/route";
 import { redirect } from "next/navigation";
 import SignIn from "@/components/SignIn";
+import { Metadata } from "next";
+import { authOptions } from "@/app/lib/auth";
+
+export const metadata: Metadata = {
+  title: "Sign In",
+  description: "Sign up or Log in to Instagram Clone.",
+};
 
 type Props = {
   searchParams: {
